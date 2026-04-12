@@ -1,0 +1,857 @@
+2026-04-12 17:05:10,825 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 17:05:11,901 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 17:05:12,823 - INFO - network_sentinel_knowledge_base - Added 7 new knowledge base documents.
+2026-04-12 17:05:54,246 - INFO - network_sentinel_training - Starting training pipeline.
+2026-04-12 17:05:54,246 - INFO - network_sentinel_training - Loading and preparing data from: data/raw/Wednesday-workingHours.pcap_ISCX.csv
+2026-04-12 17:05:54,246 - INFO - network_sentinel_loader - Loading dataset from path: data/raw/Wednesday-workingHours.pcap_ISCX.csv
+2026-04-12 17:06:00,563 - INFO - network_sentinel_loader - Dataset loaded successfully. Shape: (692703, 79)
+2026-04-12 17:06:01,017 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (692703, 79)
+2026-04-12 17:06:03,629 - INFO - network_sentinel_preprocessing - Duplicate rows found: 81909
+2026-04-12 17:06:06,378 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 61
+2026-04-12 17:06:06,461 - INFO - network_sentinel_preprocessing - Infinity values found: 543
+2026-04-12 17:06:06,612 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (610794, 79)
+2026-04-12 17:06:06,723 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 17:06:06,744 - INFO - network_sentinel_preprocessing - Split features and target successfully. X shape: (610794, 80), y shape: (610794,)
+2026-04-12 17:06:06,849 - INFO - network_sentinel_preprocessing - Target encoding completed. Classes: ['BENIGN', 'DoS GoldenEye', 'DoS Hulk', 'DoS Slowhttptest', 'DoS slowloris', 'Heartbleed']
+2026-04-12 17:06:07,034 - ERROR - network_sentinel_preprocessing - Failed during fit_scaler.
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\data\preprocessing.py", line 126, in fit_scaler
+    X_scaled = scaler.fit_transform(X)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\utils\_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\base.py", line 907, in fit_transform
+    return self.fit(X, **fit_params).transform(X)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\preprocessing\_data.py", line 924, in fit
+    return self.partial_fit(X, y, sample_weight)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\base.py", line 1336, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\preprocessing\_data.py", line 961, in partial_fit
+    X = validate_data(
+        ^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\utils\validation.py", line 2902, in validate_data
+    out = check_array(X, input_name="X", **check_params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\utils\validation.py", line 1074, in check_array
+    _assert_all_finite(
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\utils\validation.py", line 133, in _assert_all_finite
+    _assert_all_finite_element_wise(
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\utils\validation.py", line 182, in _assert_all_finite_element_wise
+    raise ValueError(msg_err)
+ValueError: Input X contains infinity or a value too large for dtype('float64').
+2026-04-12 17:06:07,112 - ERROR - network_sentinel_preprocessing - Failed during prepare_training_data.
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\data\preprocessing.py", line 126, in fit_scaler
+    X_scaled = scaler.fit_transform(X)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\utils\_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\base.py", line 907, in fit_transform
+    return self.fit(X, **fit_params).transform(X)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\preprocessing\_data.py", line 924, in fit
+    return self.partial_fit(X, y, sample_weight)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\base.py", line 1336, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\preprocessing\_data.py", line 961, in partial_fit
+    X = validate_data(
+        ^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\utils\validation.py", line 2902, in validate_data
+    out = check_array(X, input_name="X", **check_params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\utils\validation.py", line 1074, in check_array
+    _assert_all_finite(
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\utils\validation.py", line 133, in _assert_all_finite
+    _assert_all_finite_element_wise(
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\utils\validation.py", line 182, in _assert_all_finite_element_wise
+    raise ValueError(msg_err)
+ValueError: Input X contains infinity or a value too large for dtype('float64').
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\data\preprocessing.py", line 156, in prepare_training_data
+    X_scaled, scaler = fit_scaler(X)
+                       ^^^^^^^^^^^^^
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\data\preprocessing.py", line 132, in fit_scaler
+    raise RuntimeError(f"Failed to fit scaler: {exc}") from exc
+RuntimeError: Failed to fit scaler: Input X contains infinity or a value too large for dtype('float64').
+2026-04-12 17:06:07,123 - ERROR - network_sentinel_training - Training pipeline failed.
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\data\preprocessing.py", line 126, in fit_scaler
+    X_scaled = scaler.fit_transform(X)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\utils\_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\base.py", line 907, in fit_transform
+    return self.fit(X, **fit_params).transform(X)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\preprocessing\_data.py", line 924, in fit
+    return self.partial_fit(X, y, sample_weight)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\base.py", line 1336, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\preprocessing\_data.py", line 961, in partial_fit
+    X = validate_data(
+        ^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\utils\validation.py", line 2902, in validate_data
+    out = check_array(X, input_name="X", **check_params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\utils\validation.py", line 1074, in check_array
+    _assert_all_finite(
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\utils\validation.py", line 133, in _assert_all_finite
+    _assert_all_finite_element_wise(
+  File "C:\Users\divya\nlp_env\Lib\site-packages\sklearn\utils\validation.py", line 182, in _assert_all_finite_element_wise
+    raise ValueError(msg_err)
+ValueError: Input X contains infinity or a value too large for dtype('float64').
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\data\preprocessing.py", line 156, in prepare_training_data
+    X_scaled, scaler = fit_scaler(X)
+                       ^^^^^^^^^^^^^
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\data\preprocessing.py", line 132, in fit_scaler
+    raise RuntimeError(f"Failed to fit scaler: {exc}") from exc
+RuntimeError: Failed to fit scaler: Input X contains infinity or a value too large for dtype('float64').
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\models\train.py", line 162, in train_model
+    X_scaled, y_encoded, scaler, label_encoder, feature_columns = load_and_prepare_data(data_path)
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\models\train.py", line 41, in load_and_prepare_data
+    X_scaled, y_encoded, scaler, label_encoder, feature_columns = prepare_training_data(df)
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\data\preprocessing.py", line 165, in prepare_training_data
+    raise RuntimeError(f"Failed to prepare training data: {exc}") from exc
+RuntimeError: Failed to prepare training data: Failed to fit scaler: Input X contains infinity or a value too large for dtype('float64').
+2026-04-12 17:10:39,244 - INFO - network_sentinel_training - Starting training pipeline.
+2026-04-12 17:10:39,244 - INFO - network_sentinel_training - Loading and preparing data from: data/raw/Wednesday-workingHours.pcap_ISCX.csv
+2026-04-12 17:10:39,244 - INFO - network_sentinel_loader - Loading dataset from path: data/raw/Wednesday-workingHours.pcap_ISCX.csv
+2026-04-12 17:10:45,325 - INFO - network_sentinel_loader - Dataset loaded successfully. Shape: (692703, 79)
+2026-04-12 17:10:45,781 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (692703, 79)
+2026-04-12 17:10:48,490 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 61
+2026-04-12 17:10:49,121 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (610794, 79)
+2026-04-12 17:10:49,442 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 17:10:50,530 - INFO - network_sentinel_preprocessing - Final numeric sanity check passed.
+2026-04-12 17:10:50,576 - INFO - network_sentinel_preprocessing - Split features and target successfully. X shape: (610794, 80), y shape: (610794,)
+2026-04-12 17:10:50,669 - INFO - network_sentinel_preprocessing - Target encoding completed. Classes: ['BENIGN', 'DoS GoldenEye', 'DoS Hulk', 'DoS Slowhttptest', 'DoS slowloris', 'Heartbleed']
+2026-04-12 17:10:51,476 - INFO - network_sentinel_preprocessing - Feature scaling completed.
+2026-04-12 17:10:51,497 - INFO - network_sentinel_preprocessing - Training data prepared successfully.
+2026-04-12 17:10:51,541 - INFO - network_sentinel_training - Data prepared successfully. X shape: (610794, 80), y shape: (610794,)
+2026-04-12 17:10:51,564 - INFO - network_sentinel_training - Building RandomForestClassifier model.
+2026-04-12 17:10:51,564 - INFO - network_sentinel_training - Running 5-fold cross-validation.
+2026-04-12 17:13:38,282 - INFO - network_sentinel_training - Cross-validation completed. Mean accuracy: 0.9938
+2026-04-12 17:13:38,286 - INFO - network_sentinel_training - Splitting data into train/test.
+2026-04-12 17:13:39,711 - INFO - network_sentinel_training - Training final model.
+2026-04-12 17:14:19,832 - INFO - network_sentinel_training - Evaluating model on held-out test set.
+2026-04-12 17:14:20,306 - INFO - network_sentinel_training - Test accuracy: 0.9995
+2026-04-12 17:14:20,368 - INFO - network_sentinel_training - Artifacts saved successfully to models
+2026-04-12 17:14:20,372 - INFO - network_sentinel_training - Training pipeline completed successfully.
+2026-04-12 17:31:06,242 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 17:31:41,575 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 17:31:41,790 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 17:31:41,824 - INFO - network_sentinel_app - User triggered incident agent run.
+2026-04-12 17:31:41,825 - INFO - network_sentinel_incident_agent - Running incident intelligence agent.
+2026-04-12 17:31:41,825 - INFO - network_sentinel_prediction - Loading prediction artifacts.
+2026-04-12 17:31:41,907 - INFO - network_sentinel_prediction - Preparing input dataframe for inference.
+2026-04-12 17:31:41,909 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (1000, 79)
+2026-04-12 17:31:41,947 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 0
+2026-04-12 17:31:42,028 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (937, 79)
+2026-04-12 17:31:42,033 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 17:31:42,091 - INFO - network_sentinel_preprocessing - Final numeric sanity check passed.
+2026-04-12 17:31:42,096 - INFO - network_sentinel_preprocessing - Inference input prepared successfully. Shape: (937, 80)
+2026-04-12 17:31:42,096 - INFO - network_sentinel_prediction - Transforming features using saved scaler.
+2026-04-12 17:31:42,098 - INFO - network_sentinel_preprocessing - Feature transformation completed for inference.
+2026-04-12 17:31:42,098 - INFO - network_sentinel_prediction - Generating prediction.
+2026-04-12 17:31:42,163 - INFO - network_sentinel_prediction - Prediction complete. Label=BENIGN Confidence=1.0000
+2026-04-12 17:31:42,165 - INFO - network_sentinel_incident_agent - Retrieving context from Chroma.
+2026-04-12 17:31:42,165 - INFO - network_sentinel_retriever - Running retrieval query: Explain the BENIGN network attack, its indicators, and mitigation steps. Also answer this analyst question: what major attacks are present and how to resolve
+2026-04-12 17:31:42,166 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 17:31:42,282 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 17:31:42,749 - INFO - network_sentinel_retriever - Retrieval completed successfully.
+2026-04-12 17:31:42,749 - INFO - network_sentinel_incident_agent - Generating final LLM response.
+2026-04-12 17:31:43,035 - INFO - network_sentinel_llm_agent - OpenAI client initialized successfully.
+2026-04-12 17:31:43,035 - INFO - network_sentinel_llm_agent - Sending request to OpenAI model: gpt-4o-mini
+2026-04-12 17:32:04,750 - ERROR - network_sentinel_llm_agent - LLM response generation failed.
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\llm_agent.py", line 88, in generate_llm_response
+    response = client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\resources\responses\responses.py", line 898, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1087, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2026-04-12 17:32:04,750 - ERROR - network_sentinel_incident_agent - Incident agent failed.
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\llm_agent.py", line 88, in generate_llm_response
+    response = client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\resources\responses\responses.py", line 898, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1087, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\incident_agent.py", line 84, in run_incident_agent
+    final_response = generate_llm_response(
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\llm_agent.py", line 100, in generate_llm_response
+    raise RuntimeError(f"Failed to generate LLM response: {exc}") from exc
+RuntimeError: Failed to generate LLM response: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2026-04-12 17:32:04,762 - ERROR - network_sentinel_app - Incident agent run failed from UI.
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\llm_agent.py", line 88, in generate_llm_response
+    response = client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\resources\responses\responses.py", line 898, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1087, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\incident_agent.py", line 84, in run_incident_agent
+    final_response = generate_llm_response(
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\llm_agent.py", line 100, in generate_llm_response
+    raise RuntimeError(f"Failed to generate LLM response: {exc}") from exc
+RuntimeError: Failed to generate LLM response: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\app.py", line 78, in <module>
+    result = run_incident_agent(df, user_query=user_query)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\incident_agent.py", line 104, in run_incident_agent
+    raise RuntimeError(f"Incident intelligence agent failed: {exc}") from exc
+RuntimeError: Incident intelligence agent failed: Failed to generate LLM response: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2026-04-12 17:47:03,455 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 17:47:22,579 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 17:47:22,780 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 17:47:22,811 - INFO - network_sentinel_app - User triggered incident agent run.
+2026-04-12 17:47:22,812 - INFO - network_sentinel_incident_agent - Running incident intelligence agent.
+2026-04-12 17:47:22,814 - INFO - network_sentinel_prediction - Loading prediction artifacts.
+2026-04-12 17:47:22,891 - INFO - network_sentinel_prediction - Preparing input dataframe for inference.
+2026-04-12 17:47:22,894 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (1000, 79)
+2026-04-12 17:47:22,910 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 0
+2026-04-12 17:47:22,978 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (937, 79)
+2026-04-12 17:47:22,981 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 17:47:23,016 - INFO - network_sentinel_preprocessing - Final numeric sanity check passed.
+2026-04-12 17:47:23,017 - INFO - network_sentinel_preprocessing - Inference input prepared successfully. Shape: (937, 80)
+2026-04-12 17:47:23,018 - INFO - network_sentinel_prediction - Transforming features using saved scaler.
+2026-04-12 17:47:23,019 - INFO - network_sentinel_preprocessing - Feature transformation completed for inference.
+2026-04-12 17:47:23,019 - INFO - network_sentinel_prediction - Generating prediction.
+2026-04-12 17:47:23,073 - INFO - network_sentinel_prediction - Prediction complete. Label=BENIGN Confidence=1.0000
+2026-04-12 17:47:23,075 - INFO - network_sentinel_incident_agent - Retrieving context from Chroma.
+2026-04-12 17:47:23,076 - INFO - network_sentinel_retriever - Running retrieval query: Explain the BENIGN network attack, its indicators, and mitigation steps. Also answer this analyst question: What attacks are present and how to solve
+2026-04-12 17:47:23,076 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 17:47:23,131 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 17:47:23,411 - INFO - network_sentinel_retriever - Retrieval completed successfully.
+2026-04-12 17:47:23,411 - INFO - network_sentinel_incident_agent - Generating final LLM response.
+2026-04-12 17:47:23,727 - INFO - network_sentinel_llm_agent - OpenAI client initialized successfully.
+2026-04-12 17:47:23,727 - INFO - network_sentinel_llm_agent - Sending request to OpenAI model: gpt-4o-mini
+2026-04-12 17:47:43,702 - ERROR - network_sentinel_llm_agent - LLM response generation failed.
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\llm_agent.py", line 88, in generate_llm_response
+    response = client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\resources\responses\responses.py", line 898, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1087, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2026-04-12 17:47:43,708 - ERROR - network_sentinel_incident_agent - Incident agent failed.
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\llm_agent.py", line 88, in generate_llm_response
+    response = client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\resources\responses\responses.py", line 898, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1087, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\incident_agent.py", line 84, in run_incident_agent
+    final_response = generate_llm_response(
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\llm_agent.py", line 100, in generate_llm_response
+    raise RuntimeError(f"Failed to generate LLM response: {exc}") from exc
+RuntimeError: Failed to generate LLM response: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2026-04-12 17:47:43,709 - ERROR - network_sentinel_app - Incident agent run failed from UI.
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\llm_agent.py", line 88, in generate_llm_response
+    response = client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\resources\responses\responses.py", line 898, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1087, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\incident_agent.py", line 84, in run_incident_agent
+    final_response = generate_llm_response(
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\llm_agent.py", line 100, in generate_llm_response
+    raise RuntimeError(f"Failed to generate LLM response: {exc}") from exc
+RuntimeError: Failed to generate LLM response: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\app.py", line 78, in <module>
+    result = run_incident_agent(df, user_query=user_query)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\incident_agent.py", line 104, in run_incident_agent
+    raise RuntimeError(f"Incident intelligence agent failed: {exc}") from exc
+RuntimeError: Incident intelligence agent failed: Failed to generate LLM response: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2026-04-12 17:53:55,558 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 17:54:22,317 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 17:54:22,513 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 17:54:22,546 - INFO - network_sentinel_app - User triggered incident agent run.
+2026-04-12 17:54:22,547 - INFO - network_sentinel_incident_agent - Running incident intelligence agent.
+2026-04-12 17:54:22,547 - INFO - network_sentinel_prediction - Loading prediction artifacts.
+2026-04-12 17:54:22,622 - INFO - network_sentinel_prediction - Preparing input dataframe for inference.
+2026-04-12 17:54:22,625 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (1000, 79)
+2026-04-12 17:54:22,641 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 0
+2026-04-12 17:54:22,719 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (937, 79)
+2026-04-12 17:54:22,721 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 17:54:22,791 - INFO - network_sentinel_preprocessing - Final numeric sanity check passed.
+2026-04-12 17:54:22,793 - INFO - network_sentinel_preprocessing - Inference input prepared successfully. Shape: (937, 80)
+2026-04-12 17:54:22,793 - INFO - network_sentinel_prediction - Transforming features using saved scaler.
+2026-04-12 17:54:22,794 - INFO - network_sentinel_preprocessing - Feature transformation completed for inference.
+2026-04-12 17:54:22,794 - INFO - network_sentinel_prediction - Generating prediction.
+2026-04-12 17:54:22,839 - INFO - network_sentinel_prediction - Prediction complete. Label=BENIGN Confidence=1.0000
+2026-04-12 17:54:22,840 - INFO - network_sentinel_incident_agent - Retrieving context from Chroma.
+2026-04-12 17:54:22,842 - INFO - network_sentinel_retriever - Running retrieval query: Explain the BENIGN network attack, its indicators, and mitigation steps. Also answer this analyst question: What errors are present and how to resolve
+2026-04-12 17:54:22,842 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 17:54:22,894 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 17:54:23,207 - INFO - network_sentinel_retriever - Retrieval completed successfully.
+2026-04-12 17:54:23,207 - INFO - network_sentinel_incident_agent - Generating final LLM response.
+2026-04-12 17:54:23,492 - INFO - network_sentinel_llm_agent - OpenAI client initialized successfully.
+2026-04-12 17:54:23,492 - INFO - network_sentinel_llm_agent - Sending request to OpenAI model: gpt-4o-mini
+2026-04-12 17:54:45,789 - ERROR - network_sentinel_llm_agent - LLM response generation failed.
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\llm_agent.py", line 88, in generate_llm_response
+    response = client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\resources\responses\responses.py", line 898, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1087, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2026-04-12 17:54:45,805 - ERROR - network_sentinel_incident_agent - Incident agent failed.
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\llm_agent.py", line 88, in generate_llm_response
+    response = client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\resources\responses\responses.py", line 898, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1087, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\incident_agent.py", line 84, in run_incident_agent
+    final_response = generate_llm_response(
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\llm_agent.py", line 100, in generate_llm_response
+    raise RuntimeError(f"Failed to generate LLM response: {exc}") from exc
+RuntimeError: Failed to generate LLM response: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2026-04-12 17:54:45,805 - ERROR - network_sentinel_app - Incident agent run failed from UI.
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\llm_agent.py", line 88, in generate_llm_response
+    response = client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\resources\responses\responses.py", line 898, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1087, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\incident_agent.py", line 84, in run_incident_agent
+    final_response = generate_llm_response(
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\llm_agent.py", line 100, in generate_llm_response
+    raise RuntimeError(f"Failed to generate LLM response: {exc}") from exc
+RuntimeError: Failed to generate LLM response: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\app.py", line 78, in <module>
+    result = run_incident_agent(df, user_query=user_query)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\incident_agent.py", line 104, in run_incident_agent
+    raise RuntimeError(f"Incident intelligence agent failed: {exc}") from exc
+RuntimeError: Incident intelligence agent failed: Failed to generate LLM response: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2026-04-12 18:03:01,080 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 18:03:20,595 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 18:03:20,794 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 18:03:20,831 - INFO - network_sentinel_app - User triggered incident agent run.
+2026-04-12 18:03:20,831 - INFO - network_sentinel_incident_agent - Running incident intelligence agent.
+2026-04-12 18:03:20,831 - INFO - network_sentinel_prediction - Loading prediction artifacts.
+2026-04-12 18:03:20,908 - INFO - network_sentinel_prediction - Preparing input dataframe for inference.
+2026-04-12 18:03:20,910 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (1000, 79)
+2026-04-12 18:03:20,926 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 0
+2026-04-12 18:03:20,975 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (937, 79)
+2026-04-12 18:03:20,977 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 18:03:21,008 - INFO - network_sentinel_preprocessing - Final numeric sanity check passed.
+2026-04-12 18:03:21,010 - INFO - network_sentinel_preprocessing - Inference input prepared successfully. Shape: (937, 80)
+2026-04-12 18:03:21,011 - INFO - network_sentinel_prediction - Transforming features using saved scaler.
+2026-04-12 18:03:21,011 - INFO - network_sentinel_preprocessing - Feature transformation completed for inference.
+2026-04-12 18:03:21,013 - INFO - network_sentinel_prediction - Generating prediction.
+2026-04-12 18:03:21,085 - INFO - network_sentinel_prediction - Prediction complete. Label=BENIGN Confidence=1.0000
+2026-04-12 18:03:21,087 - INFO - network_sentinel_incident_agent - Retrieving context from Chroma.
+2026-04-12 18:03:21,087 - INFO - network_sentinel_retriever - Running retrieval query: Explain the BENIGN network attack, its indicators, and mitigation steps. Also answer this analyst question: how to resolve
+2026-04-12 18:03:21,088 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 18:03:21,141 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 18:03:21,438 - INFO - network_sentinel_retriever - Retrieval completed successfully.
+2026-04-12 18:03:21,438 - INFO - network_sentinel_incident_agent - Generating final LLM response.
+2026-04-12 18:03:21,689 - INFO - network_sentinel_llm_agent - OpenAI client initialized successfully.
+2026-04-12 18:03:21,689 - INFO - network_sentinel_llm_agent - Sending request to OpenAI model: gpt-4o-mini
+2026-04-12 18:03:40,638 - ERROR - network_sentinel_llm_agent - LLM response generation failed. Falling back to internal response.
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\llm_agent.py", line 119, in generate_llm_response
+    response = client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\resources\responses\responses.py", line 898, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1087, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2026-04-12 18:03:40,638 - INFO - network_sentinel_incident_agent - Incident report generated successfully.
+2026-04-12 18:10:53,850 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 18:10:58,623 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 18:10:58,659 - INFO - network_sentinel_app - User triggered incident agent run.
+2026-04-12 18:10:58,660 - INFO - network_sentinel_incident_agent - Running incident intelligence agent.
+2026-04-12 18:10:58,660 - INFO - network_sentinel_prediction - Loading prediction artifacts.
+2026-04-12 18:10:58,736 - INFO - network_sentinel_prediction - Preparing input dataframe for inference.
+2026-04-12 18:10:58,738 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (1000, 79)
+2026-04-12 18:10:58,754 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 0
+2026-04-12 18:10:58,840 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (937, 79)
+2026-04-12 18:10:58,843 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 18:10:58,908 - INFO - network_sentinel_preprocessing - Final numeric sanity check passed.
+2026-04-12 18:10:58,911 - INFO - network_sentinel_preprocessing - Inference input prepared successfully. Shape: (937, 80)
+2026-04-12 18:10:58,912 - INFO - network_sentinel_prediction - Transforming features using saved scaler.
+2026-04-12 18:10:58,913 - INFO - network_sentinel_preprocessing - Feature transformation completed for inference.
+2026-04-12 18:10:58,913 - INFO - network_sentinel_prediction - Generating prediction.
+2026-04-12 18:10:58,982 - INFO - network_sentinel_prediction - Prediction complete. Label=BENIGN Confidence=1.0000
+2026-04-12 18:10:58,983 - INFO - network_sentinel_incident_agent - Retrieving context from Chroma.
+2026-04-12 18:10:58,983 - INFO - network_sentinel_retriever - Running retrieval query: Explain normal network traffic behavior, why it is considered benign, and whether any action is required.
+2026-04-12 18:10:58,984 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 18:10:59,055 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 18:10:59,364 - INFO - network_sentinel_retriever - Retrieval completed successfully.
+2026-04-12 18:10:59,364 - INFO - network_sentinel_incident_agent - Generating final LLM response.
+2026-04-12 18:10:59,715 - INFO - network_sentinel_llm_agent - OpenAI client initialized successfully.
+2026-04-12 18:10:59,715 - INFO - network_sentinel_llm_agent - Sending request to OpenAI model: gpt-4o-mini
+2026-04-12 18:11:20,012 - ERROR - network_sentinel_llm_agent - LLM response generation failed. Falling back to internal response.
+Traceback (most recent call last):
+  File "C:\Sharmila\Machine Learning\Projects\Network-Sentinel\src\agent\llm_agent.py", line 119, in generate_llm_response
+    response = client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\resources\responses\responses.py", line 898, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divya\nlp_env\Lib\site-packages\openai\_base_client.py", line 1087, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2026-04-12 18:11:20,019 - INFO - network_sentinel_incident_agent - Incident report generated successfully.
+2026-04-12 18:19:00,737 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 18:19:00,865 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 18:19:01,271 - INFO - network_sentinel_knowledge_base - Added 1 new knowledge base documents.
+2026-04-12 18:22:17,594 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 18:22:20,733 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 18:22:20,765 - INFO - network_sentinel_app - User triggered incident agent run.
+2026-04-12 18:22:20,770 - INFO - network_sentinel_incident_agent - Running incident intelligence agent.
+2026-04-12 18:22:20,770 - INFO - network_sentinel_prediction - Loading prediction artifacts.
+2026-04-12 18:22:20,844 - INFO - network_sentinel_prediction - Preparing input dataframe for inference.
+2026-04-12 18:22:20,847 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (1000, 79)
+2026-04-12 18:22:20,863 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 0
+2026-04-12 18:22:20,945 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (937, 79)
+2026-04-12 18:22:20,948 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 18:22:20,978 - INFO - network_sentinel_preprocessing - Final numeric sanity check passed.
+2026-04-12 18:22:20,994 - INFO - network_sentinel_preprocessing - Inference input prepared successfully. Shape: (937, 80)
+2026-04-12 18:22:20,995 - INFO - network_sentinel_prediction - Transforming features using saved scaler.
+2026-04-12 18:22:20,996 - INFO - network_sentinel_preprocessing - Feature transformation completed for inference.
+2026-04-12 18:22:20,996 - INFO - network_sentinel_prediction - Generating prediction.
+2026-04-12 18:22:21,052 - INFO - network_sentinel_prediction - Prediction complete. Label=BENIGN Confidence=1.0000
+2026-04-12 18:22:21,052 - INFO - network_sentinel_incident_agent - Retrieving context from Chroma.
+2026-04-12 18:22:21,052 - INFO - network_sentinel_retriever - Running retrieval query: Explain normal network traffic behavior, why it is considered benign, and whether any action is required.
+2026-04-12 18:22:21,052 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 18:22:21,115 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 18:22:21,434 - INFO - network_sentinel_retriever - Retrieval completed successfully.
+2026-04-12 18:22:21,434 - INFO - network_sentinel_incident_agent - Generating final LLM response.
+2026-04-12 18:22:21,701 - INFO - network_sentinel_llm_agent - OpenAI client initialized.
+2026-04-12 18:22:40,263 - WARNING - network_sentinel_llm_agent - OpenAI failed, using fallback.
+2026-04-12 18:22:40,263 - INFO - network_sentinel_incident_agent - Incident report generated successfully.
+2026-04-12 18:23:30,456 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 18:23:30,672 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 18:23:30,707 - INFO - network_sentinel_app - User triggered incident agent run.
+2026-04-12 18:23:30,708 - INFO - network_sentinel_incident_agent - Running incident intelligence agent.
+2026-04-12 18:23:30,708 - INFO - network_sentinel_prediction - Loading prediction artifacts.
+2026-04-12 18:23:30,781 - INFO - network_sentinel_prediction - Preparing input dataframe for inference.
+2026-04-12 18:23:30,782 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (1000, 79)
+2026-04-12 18:23:30,792 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 0
+2026-04-12 18:23:30,855 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (937, 79)
+2026-04-12 18:23:30,856 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 18:23:30,900 - INFO - network_sentinel_preprocessing - Final numeric sanity check passed.
+2026-04-12 18:23:30,902 - INFO - network_sentinel_preprocessing - Inference input prepared successfully. Shape: (937, 80)
+2026-04-12 18:23:30,902 - INFO - network_sentinel_prediction - Transforming features using saved scaler.
+2026-04-12 18:23:30,902 - INFO - network_sentinel_preprocessing - Feature transformation completed for inference.
+2026-04-12 18:23:30,902 - INFO - network_sentinel_prediction - Generating prediction.
+2026-04-12 18:23:30,962 - INFO - network_sentinel_prediction - Prediction complete. Label=BENIGN Confidence=1.0000
+2026-04-12 18:23:30,962 - INFO - network_sentinel_incident_agent - Retrieving context from Chroma.
+2026-04-12 18:23:30,962 - INFO - network_sentinel_retriever - Running retrieval query: Explain normal network traffic behavior, why it is considered benign, and whether any action is required. Also answer this analyst question: how to resolve?
+2026-04-12 18:23:30,962 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 18:23:30,973 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 18:23:31,189 - INFO - network_sentinel_retriever - Retrieval completed successfully.
+2026-04-12 18:23:31,189 - INFO - network_sentinel_incident_agent - Generating final LLM response.
+2026-04-12 18:23:48,267 - WARNING - network_sentinel_llm_agent - OpenAI failed, using fallback.
+2026-04-12 18:23:48,267 - INFO - network_sentinel_incident_agent - Incident report generated successfully.
+2026-04-12 18:24:30,819 - INFO - network_sentinel_app - User triggered model training.
+2026-04-12 18:24:30,819 - INFO - network_sentinel_training - Starting training pipeline.
+2026-04-12 18:24:30,819 - INFO - network_sentinel_training - Loading and preparing data from: data/raw/Wednesday-workingHours.pcap_ISCX.csv
+2026-04-12 18:24:30,826 - INFO - network_sentinel_loader - Loading dataset from path: data/raw/Wednesday-workingHours.pcap_ISCX.csv
+2026-04-12 18:24:36,825 - INFO - network_sentinel_loader - Dataset loaded successfully. Shape: (692703, 79)
+2026-04-12 18:24:37,202 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (692703, 79)
+2026-04-12 18:24:39,686 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 61
+2026-04-12 18:24:40,269 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (610794, 79)
+2026-04-12 18:24:40,570 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 18:24:41,780 - INFO - network_sentinel_preprocessing - Final numeric sanity check passed.
+2026-04-12 18:24:41,827 - INFO - network_sentinel_preprocessing - Split features and target successfully. X shape: (610794, 80), y shape: (610794,)
+2026-04-12 18:24:41,944 - INFO - network_sentinel_preprocessing - Target encoding completed. Classes: ['BENIGN', 'DoS GoldenEye', 'DoS Hulk', 'DoS Slowhttptest', 'DoS slowloris', 'Heartbleed']
+2026-04-12 18:24:42,977 - INFO - network_sentinel_preprocessing - Feature scaling completed.
+2026-04-12 18:24:42,993 - INFO - network_sentinel_preprocessing - Training data prepared successfully.
+2026-04-12 18:24:43,022 - INFO - network_sentinel_training - Data prepared successfully. X shape: (610794, 80), y shape: (610794,)
+2026-04-12 18:24:43,060 - INFO - network_sentinel_training - Building RandomForestClassifier model.
+2026-04-12 18:24:43,061 - INFO - network_sentinel_training - Running 5-fold cross-validation.
+2026-04-12 18:24:59,944 - INFO - network_sentinel_app - User triggered knowledge base seeding.
+2026-04-12 18:25:00,120 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 18:25:00,291 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 18:25:00,606 - INFO - network_sentinel_knowledge_base - Knowledge base already seeded.
+2026-04-12 18:25:00,917 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 18:25:19,894 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 18:25:20,323 - INFO - network_sentinel_app - User triggered incident agent run.
+2026-04-12 18:25:20,741 - INFO - network_sentinel_incident_agent - Running incident intelligence agent.
+2026-04-12 18:25:20,910 - INFO - network_sentinel_prediction - Loading prediction artifacts.
+2026-04-12 18:25:22,255 - INFO - network_sentinel_prediction - Preparing input dataframe for inference.
+2026-04-12 18:25:22,428 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (1000, 79)
+2026-04-12 18:25:22,686 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 0
+2026-04-12 18:25:23,544 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (937, 79)
+2026-04-12 18:25:23,705 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 18:25:24,682 - INFO - network_sentinel_preprocessing - Final numeric sanity check passed.
+2026-04-12 18:25:24,845 - INFO - network_sentinel_preprocessing - Inference input prepared successfully. Shape: (937, 80)
+2026-04-12 18:25:24,998 - INFO - network_sentinel_prediction - Transforming features using saved scaler.
+2026-04-12 18:25:25,156 - INFO - network_sentinel_preprocessing - Feature transformation completed for inference.
+2026-04-12 18:25:25,312 - INFO - network_sentinel_prediction - Generating prediction.
+2026-04-12 18:25:32,651 - INFO - network_sentinel_prediction - Prediction complete. Label=BENIGN Confidence=1.0000
+2026-04-12 18:25:32,820 - INFO - network_sentinel_incident_agent - Retrieving context from Chroma.
+2026-04-12 18:25:33,007 - INFO - network_sentinel_retriever - Running retrieval query: Explain normal network traffic behavior, why it is considered benign, and whether any action is required. Also answer this analyst question: how to resolve?
+2026-04-12 18:25:33,195 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 18:25:33,386 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 18:25:37,836 - INFO - network_sentinel_retriever - Retrieval completed successfully.
+2026-04-12 18:25:37,994 - INFO - network_sentinel_incident_agent - Generating final LLM response.
+2026-04-12 18:25:55,200 - WARNING - network_sentinel_llm_agent - OpenAI failed, using fallback.
+2026-04-12 18:25:55,270 - INFO - network_sentinel_incident_agent - Incident report generated successfully.
+2026-04-12 18:27:30,482 - INFO - network_sentinel_training - Cross-validation completed. Mean accuracy: 0.9938
+2026-04-12 18:27:30,482 - INFO - network_sentinel_training - Splitting data into train/test.
+2026-04-12 18:27:31,711 - INFO - network_sentinel_training - Training final model.
+2026-04-12 18:28:12,687 - INFO - network_sentinel_training - Evaluating model on held-out test set.
+2026-04-12 18:28:13,521 - INFO - network_sentinel_training - Test accuracy: 0.9995
+2026-04-12 18:28:13,774 - INFO - network_sentinel_training - Artifacts saved successfully to models
+2026-04-12 18:28:13,779 - INFO - network_sentinel_training - Training pipeline completed successfully.
+2026-04-12 18:36:55,448 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 18:36:59,706 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 18:36:59,740 - INFO - network_sentinel_app - User triggered incident agent run from UI.
+2026-04-12 18:36:59,742 - INFO - network_sentinel_incident_agent - Running incident intelligence agent.
+2026-04-12 18:36:59,742 - INFO - network_sentinel_prediction - Loading prediction artifacts.
+2026-04-12 18:36:59,812 - INFO - network_sentinel_prediction - Preparing input dataframe for inference.
+2026-04-12 18:36:59,814 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (1000, 79)
+2026-04-12 18:36:59,831 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 0
+2026-04-12 18:36:59,906 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (937, 79)
+2026-04-12 18:36:59,908 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 18:36:59,995 - INFO - network_sentinel_preprocessing - Final numeric sanity check passed.
+2026-04-12 18:36:59,999 - INFO - network_sentinel_preprocessing - Inference input prepared successfully. Shape: (937, 80)
+2026-04-12 18:36:59,999 - INFO - network_sentinel_prediction - Transforming features using saved scaler.
+2026-04-12 18:36:59,999 - INFO - network_sentinel_preprocessing - Feature transformation completed for inference.
+2026-04-12 18:36:59,999 - INFO - network_sentinel_prediction - Generating prediction.
+2026-04-12 18:37:00,075 - INFO - network_sentinel_prediction - Prediction complete. Label=BENIGN Confidence=1.0000
+2026-04-12 18:37:00,078 - INFO - network_sentinel_incident_agent - Retrieving context from Chroma.
+2026-04-12 18:37:00,078 - INFO - network_sentinel_retriever - Running retrieval query: Explain normal network traffic behavior, why it is considered benign, and whether any action is required.
+2026-04-12 18:37:00,079 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 18:37:00,156 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 18:37:00,465 - INFO - network_sentinel_retriever - Retrieval completed successfully.
+2026-04-12 18:37:00,465 - INFO - network_sentinel_incident_agent - Generating final LLM response.
+2026-04-12 18:37:00,733 - INFO - network_sentinel_llm_agent - OpenAI client initialized.
+2026-04-12 18:37:16,231 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 18:37:18,464 - WARNING - network_sentinel_llm_agent - OpenAI failed, using fallback.
+2026-04-12 18:37:18,464 - INFO - network_sentinel_incident_agent - Incident report generated successfully.
+2026-04-12 18:37:51,678 - INFO - network_sentinel_app - User triggered knowledge base seeding from UI.
+2026-04-12 18:37:51,684 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 18:37:51,696 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 18:37:51,698 - INFO - network_sentinel_knowledge_base - Knowledge base already seeded.
+2026-04-12 18:37:51,710 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 18:37:57,499 - INFO - network_sentinel_app - User uploaded file: test_sample.csv
+2026-04-12 18:37:57,534 - INFO - network_sentinel_app - User triggered incident agent run from UI.
+2026-04-12 18:37:57,535 - INFO - network_sentinel_incident_agent - Running incident intelligence agent.
+2026-04-12 18:37:57,535 - INFO - network_sentinel_prediction - Loading prediction artifacts.
+2026-04-12 18:37:57,601 - INFO - network_sentinel_prediction - Preparing input dataframe for inference.
+2026-04-12 18:37:57,603 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (1000, 79)
+2026-04-12 18:37:57,614 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 0
+2026-04-12 18:37:57,688 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (937, 79)
+2026-04-12 18:37:57,693 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 18:37:57,754 - INFO - network_sentinel_preprocessing - Final numeric sanity check passed.
+2026-04-12 18:37:57,756 - INFO - network_sentinel_preprocessing - Inference input prepared successfully. Shape: (937, 80)
+2026-04-12 18:37:57,757 - INFO - network_sentinel_prediction - Transforming features using saved scaler.
+2026-04-12 18:37:57,758 - INFO - network_sentinel_preprocessing - Feature transformation completed for inference.
+2026-04-12 18:37:57,758 - INFO - network_sentinel_prediction - Generating prediction.
+2026-04-12 18:37:57,813 - INFO - network_sentinel_prediction - Prediction complete. Label=BENIGN Confidence=1.0000
+2026-04-12 18:37:57,815 - INFO - network_sentinel_incident_agent - Retrieving context from Chroma.
+2026-04-12 18:37:57,816 - INFO - network_sentinel_retriever - Running retrieval query: Explain normal network traffic behavior, why it is considered benign, and whether any action is required.
+2026-04-12 18:37:57,816 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 18:37:57,823 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 18:37:58,090 - INFO - network_sentinel_retriever - Retrieval completed successfully.
+2026-04-12 18:37:58,090 - INFO - network_sentinel_incident_agent - Generating final LLM response.
+2026-04-12 18:38:15,906 - WARNING - network_sentinel_llm_agent - OpenAI failed, using fallback.
+2026-04-12 18:38:15,906 - INFO - network_sentinel_incident_agent - Incident report generated successfully.
+2026-04-12 18:56:14,066 - INFO - network_sentinel_training - Starting full training pipeline.
+2026-04-12 18:56:14,067 - INFO - network_sentinel_training - Loading and preparing data from: data/raw/Wednesday-workingHours.pcap_ISCX.csv
+2026-04-12 18:56:14,067 - INFO - network_sentinel_loader - Loading dataset from path: data/raw/Wednesday-workingHours.pcap_ISCX.csv
+2026-04-12 18:56:19,269 - INFO - network_sentinel_loader - Dataset loaded successfully. Shape: (692703, 79)
+2026-04-12 18:56:19,585 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (692703, 79)
+2026-04-12 18:56:22,006 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 61
+2026-04-12 18:56:22,539 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (610794, 79)
+2026-04-12 18:56:22,791 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 18:56:23,750 - INFO - network_sentinel_preprocessing - Final numeric sanity check passed.
+2026-04-12 18:56:23,789 - INFO - network_sentinel_preprocessing - Split features and target successfully. X shape: (610794, 80), y shape: (610794,)
+2026-04-12 18:56:23,872 - INFO - network_sentinel_preprocessing - Target encoding completed. Classes: ['BENIGN', 'DoS GoldenEye', 'DoS Hulk', 'DoS Slowhttptest', 'DoS slowloris', 'Heartbleed']
+2026-04-12 18:56:24,583 - INFO - network_sentinel_preprocessing - Feature scaling completed.
+2026-04-12 18:56:24,584 - INFO - network_sentinel_preprocessing - Training data prepared successfully.
+2026-04-12 18:56:24,606 - INFO - network_sentinel_training - Data prepared successfully. X shape: (610794, 80), y shape: (610794,)
+2026-04-12 18:56:24,618 - INFO - network_sentinel_training - Splitting data into train/test sets.
+2026-04-12 18:56:25,570 - INFO - network_sentinel_training - Building candidate models.
+2026-04-12 18:56:25,570 - INFO - network_sentinel_training - Candidate models built successfully.
+2026-04-12 18:56:25,570 - INFO - network_sentinel_training - Starting model comparison.
+2026-04-12 18:56:25,570 - INFO - network_sentinel_training - Processing model: Logistic Regression
+2026-04-12 18:56:25,570 - INFO - network_sentinel_training - Running 5-fold cross-validation for model: LogisticRegression
+2026-04-12 18:59:14,375 - INFO - network_sentinel_training - Training model: Logistic Regression
+2026-04-12 19:00:07,029 - INFO - network_sentinel_training - Evaluating model: LogisticRegression
+2026-04-12 19:00:07,138 - INFO - network_sentinel_training - Evaluation complete for LogisticRegression. Test accuracy: 0.9919
+2026-04-12 19:00:07,139 - INFO - network_sentinel_training - Model Logistic Regression results: CV mean=0.9759, Test accuracy=0.9919
+2026-04-12 19:00:07,139 - INFO - network_sentinel_training - Processing model: Random Forest
+2026-04-12 19:00:07,140 - INFO - network_sentinel_training - Running 5-fold cross-validation for model: RandomForestClassifier
+2026-04-12 19:02:53,802 - INFO - network_sentinel_training - Training model: Random Forest
+2026-04-12 19:03:31,928 - INFO - network_sentinel_training - Evaluating model: RandomForestClassifier
+2026-04-12 19:03:32,356 - INFO - network_sentinel_training - Evaluation complete for RandomForestClassifier. Test accuracy: 0.9995
+2026-04-12 19:03:32,357 - INFO - network_sentinel_training - Model Random Forest results: CV mean=0.9938, Test accuracy=0.9995
+2026-04-12 19:03:32,357 - INFO - network_sentinel_training - Processing model: XGBoost
+2026-04-12 19:03:32,357 - INFO - network_sentinel_training - Running 5-fold cross-validation for model: XGBClassifier
+2026-04-12 19:07:52,600 - INFO - network_sentinel_training - Training model: XGBoost
+2026-04-12 19:08:49,618 - INFO - network_sentinel_training - Evaluating model: XGBClassifier
+2026-04-12 19:08:50,124 - INFO - network_sentinel_training - Evaluation complete for XGBClassifier. Test accuracy: 0.9997
+2026-04-12 19:08:50,126 - INFO - network_sentinel_training - Model XGBoost results: CV mean=0.9965, Test accuracy=0.9997
+2026-04-12 19:08:50,126 - INFO - network_sentinel_training - Best model selected: XGBoost
+2026-04-12 19:08:50,156 - INFO - network_sentinel_training - Artifacts saved successfully to models
+2026-04-12 19:08:50,159 - INFO - network_sentinel_training - Training pipeline completed successfully.
+2026-04-12 19:35:32,650 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 19:35:32,743 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 19:35:33,156 - INFO - network_sentinel_knowledge_base - Added 2 new knowledge base documents.
+2026-04-12 19:35:56,071 - INFO - network_sentinel_prediction - Loading prediction artifacts.
+2026-04-12 19:35:56,210 - INFO - network_sentinel_prediction - Prediction artifacts loaded successfully from C:\Sharmila\Machine Learning\Projects\Network-Sentinel\models
+2026-04-12 19:35:56,210 - INFO - network_sentinel_prediction - Batch inference input shape before preparation: (1000, 79)
+2026-04-12 19:35:56,213 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (1000, 79)
+2026-04-12 19:35:56,225 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 0
+2026-04-12 19:35:56,302 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (937, 79)
+2026-04-12 19:35:56,305 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 19:35:56,364 - INFO - network_sentinel_preprocessing - Final numeric sanity check passed.
+2026-04-12 19:35:56,365 - INFO - network_sentinel_preprocessing - Inference input prepared successfully. Shape: (937, 80)
+2026-04-12 19:35:56,366 - INFO - network_sentinel_prediction - Batch prepared inference shape: (937, 80)
+2026-04-12 19:35:56,366 - INFO - network_sentinel_preprocessing - Feature transformation completed for inference.
+2026-04-12 19:35:56,367 - INFO - network_sentinel_prediction - Generating batch prediction.
+2026-04-12 19:35:56,377 - INFO - network_sentinel_prediction - Batch prediction complete. Label=BENIGN Confidence=1.0000
+2026-04-12 19:35:56,379 - INFO - network_sentinel_incident_agent - Running incident intelligence agent for predicted attack: BENIGN
+2026-04-12 19:35:56,380 - INFO - network_sentinel_incident_agent - Retrieving context from Chroma.
+2026-04-12 19:35:56,380 - INFO - network_sentinel_retriever - Running retrieval query: Explain normal network traffic behavior, why it is considered benign, common indicators of benign traffic, and whether any action is required.
+2026-04-12 19:35:56,380 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 19:35:56,388 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 19:35:56,593 - INFO - network_sentinel_retriever - Retrieval completed successfully. Retrieved 2 documents.
+2026-04-12 19:35:56,593 - INFO - network_sentinel_incident_agent - Generating final LLM response.
+2026-04-12 19:35:56,796 - INFO - network_sentinel_llm_agent - OpenAI client initialized.
+2026-04-12 19:36:15,815 - WARNING - network_sentinel_llm_agent - OpenAI failed, using fallback. Error: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2026-04-12 19:36:15,817 - INFO - network_sentinel_incident_agent - Incident report generated successfully.
+2026-04-12 19:42:12,381 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 19:42:12,491 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 19:42:12,533 - INFO - network_sentinel_knowledge_base - Knowledge base already seeded.
+2026-04-12 19:42:29,154 - INFO - network_sentinel_prediction - Loading prediction artifacts.
+2026-04-12 19:42:29,280 - INFO - network_sentinel_prediction - Prediction artifacts loaded successfully from C:\Sharmila\Machine Learning\Projects\Network-Sentinel\models
+2026-04-12 19:42:29,280 - INFO - network_sentinel_prediction - Batch inference input shape before preparation: (1000, 79)
+2026-04-12 19:42:29,282 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (1000, 79)
+2026-04-12 19:42:29,295 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 0
+2026-04-12 19:42:29,379 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (937, 79)
+2026-04-12 19:42:29,382 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 19:42:29,457 - INFO - network_sentinel_preprocessing - Final numeric sanity check passed.
+2026-04-12 19:42:29,460 - INFO - network_sentinel_preprocessing - Inference input prepared successfully. Shape: (937, 80)
+2026-04-12 19:42:29,460 - INFO - network_sentinel_prediction - Batch prepared inference shape: (937, 80)
+2026-04-12 19:42:29,462 - INFO - network_sentinel_preprocessing - Feature transformation completed for inference.
+2026-04-12 19:42:29,462 - INFO - network_sentinel_prediction - Generating batch prediction.
+2026-04-12 19:42:29,475 - INFO - network_sentinel_prediction - Batch prediction complete. Label=BENIGN Confidence=1.0000
+2026-04-12 19:42:29,478 - INFO - network_sentinel_incident_agent - Running incident intelligence agent for predicted attack: BENIGN
+2026-04-12 19:42:29,478 - INFO - network_sentinel_incident_agent - Retrieving context from Chroma.
+2026-04-12 19:42:29,478 - INFO - network_sentinel_retriever - Running retrieval query: Explain normal network traffic behavior, why it is considered benign, common indicators of benign traffic, and whether any action is required.
+2026-04-12 19:42:29,479 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 19:42:29,486 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 19:42:29,827 - INFO - network_sentinel_retriever - Retrieval completed successfully. Retrieved 2 documents.
+2026-04-12 19:42:29,829 - INFO - network_sentinel_incident_agent - Generating final LLM response.
+2026-04-12 19:42:30,148 - INFO - network_sentinel_llm_agent - OpenAI client initialized.
+2026-04-12 19:42:50,983 - WARNING - network_sentinel_llm_agent - OpenAI failed, using fallback. Error: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2026-04-12 19:42:50,983 - INFO - network_sentinel_incident_agent - Incident report generated successfully.
+2026-04-12 19:46:38,966 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 19:46:39,234 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 19:46:39,300 - INFO - network_sentinel_knowledge_base - Knowledge base already seeded.
+2026-04-12 19:46:48,188 - INFO - network_sentinel_prediction - Loading prediction artifacts.
+2026-04-12 19:46:48,439 - INFO - network_sentinel_prediction - Prediction artifacts loaded successfully from C:\Sharmila\Machine Learning\Projects\Network-Sentinel\models
+2026-04-12 19:46:48,439 - INFO - network_sentinel_prediction - Batch inference input shape before preparation: (1000, 79)
+2026-04-12 19:46:48,441 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (1000, 79)
+2026-04-12 19:46:48,481 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 0
+2026-04-12 19:46:48,559 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (937, 79)
+2026-04-12 19:46:48,565 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 19:46:48,627 - INFO - network_sentinel_preprocessing - Final numeric sanity check passed.
+2026-04-12 19:46:48,634 - INFO - network_sentinel_preprocessing - Inference input prepared successfully. Shape: (937, 80)
+2026-04-12 19:46:48,635 - INFO - network_sentinel_prediction - Batch prepared inference shape: (937, 80)
+2026-04-12 19:46:48,636 - INFO - network_sentinel_preprocessing - Feature transformation completed for inference.
+2026-04-12 19:46:48,637 - INFO - network_sentinel_prediction - Generating batch prediction.
+2026-04-12 19:46:48,664 - INFO - network_sentinel_prediction - Batch prediction complete. Label=BENIGN Confidence=1.0000
+2026-04-12 19:46:48,666 - INFO - network_sentinel_incident_agent - Running incident intelligence agent for predicted attack: BENIGN
+2026-04-12 19:46:48,668 - INFO - network_sentinel_incident_agent - Retrieving context from Chroma.
+2026-04-12 19:46:48,668 - INFO - network_sentinel_retriever - Running retrieval query: Explain normal network traffic behavior, why it is considered benign, common indicators of benign traffic, and whether any action is required.
+2026-04-12 19:46:48,668 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 19:46:48,676 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 19:46:49,298 - INFO - network_sentinel_retriever - Retrieval completed successfully. Retrieved 2 documents.
+2026-04-12 19:46:49,298 - INFO - network_sentinel_incident_agent - Generating final LLM response.
+2026-04-12 19:46:49,699 - INFO - network_sentinel_llm_agent - OpenAI client initialized.
+2026-04-12 19:47:08,162 - WARNING - network_sentinel_llm_agent - OpenAI failed, using fallback. Error: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2026-04-12 19:47:08,162 - INFO - network_sentinel_incident_agent - Incident report generated successfully.
+2026-04-12 19:47:33,504 - INFO - network_sentinel_prediction - Loading prediction artifacts.
+2026-04-12 19:47:33,557 - INFO - network_sentinel_prediction - Prediction artifacts loaded successfully from C:\Sharmila\Machine Learning\Projects\Network-Sentinel\models
+2026-04-12 19:47:33,557 - INFO - network_sentinel_prediction - Batch inference input shape before preparation: (1000, 79)
+2026-04-12 19:47:33,559 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (1000, 79)
+2026-04-12 19:47:33,571 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 0
+2026-04-12 19:47:33,661 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (937, 79)
+2026-04-12 19:47:33,664 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 19:47:33,733 - INFO - network_sentinel_preprocessing - Final numeric sanity check passed.
+2026-04-12 19:47:33,734 - INFO - network_sentinel_preprocessing - Inference input prepared successfully. Shape: (937, 80)
+2026-04-12 19:47:33,735 - INFO - network_sentinel_prediction - Batch prepared inference shape: (937, 80)
+2026-04-12 19:47:33,736 - INFO - network_sentinel_preprocessing - Feature transformation completed for inference.
+2026-04-12 19:47:33,736 - INFO - network_sentinel_prediction - Generating batch prediction.
+2026-04-12 19:47:33,746 - INFO - network_sentinel_prediction - Batch prediction complete. Label=BENIGN Confidence=1.0000
+2026-04-12 19:47:33,748 - INFO - network_sentinel_incident_agent - Running incident intelligence agent for predicted attack: BENIGN
+2026-04-12 19:47:33,748 - INFO - network_sentinel_incident_agent - Retrieving context from Chroma.
+2026-04-12 19:47:33,749 - INFO - network_sentinel_retriever - Running retrieval query: Explain normal network traffic behavior, why it is considered benign, common indicators of benign traffic, and whether any action is required.
+2026-04-12 19:47:33,749 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 19:47:33,758 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 19:47:34,100 - INFO - network_sentinel_retriever - Retrieval completed successfully. Retrieved 2 documents.
+2026-04-12 19:47:34,100 - INFO - network_sentinel_incident_agent - Generating final LLM response.
+2026-04-12 19:47:50,202 - WARNING - network_sentinel_llm_agent - OpenAI failed, using fallback. Error: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2026-04-12 19:47:50,202 - INFO - network_sentinel_incident_agent - Incident report generated successfully.
+2026-04-12 19:51:15,631 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 19:51:16,829 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 19:51:16,893 - INFO - network_sentinel_knowledge_base - Knowledge base already seeded.
+2026-04-12 19:52:15,290 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 19:52:15,398 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 19:52:15,453 - INFO - network_sentinel_knowledge_base - Knowledge base already seeded.
+2026-04-12 19:52:24,936 - INFO - network_sentinel_prediction - Loading prediction artifacts.
+2026-04-12 19:52:25,355 - INFO - network_sentinel_prediction - Prediction artifacts loaded successfully from C:\Sharmila\Machine Learning\Projects\Network-Sentinel\models
+2026-04-12 19:52:25,355 - INFO - network_sentinel_prediction - Batch inference input shape before preparation: (1000, 79)
+2026-04-12 19:52:25,357 - INFO - network_sentinel_preprocessing - Starting data cleaning. Original shape: (1000, 79)
+2026-04-12 19:52:25,383 - INFO - network_sentinel_preprocessing - Missing values in 'Flow Bytes/s': 0
+2026-04-12 19:52:25,465 - INFO - network_sentinel_preprocessing - Data cleaning completed. Cleaned shape: (937, 79)
+2026-04-12 19:52:25,469 - INFO - network_sentinel_preprocessing - Feature engineering completed successfully.
+2026-04-12 19:52:25,540 - INFO - network_sentinel_preprocessing - Final numeric sanity check passed.
+2026-04-12 19:52:25,544 - INFO - network_sentinel_preprocessing - Inference input prepared successfully. Shape: (937, 80)
+2026-04-12 19:52:25,545 - INFO - network_sentinel_prediction - Batch prepared inference shape: (937, 80)
+2026-04-12 19:52:25,545 - INFO - network_sentinel_preprocessing - Feature transformation completed for inference.
+2026-04-12 19:52:25,547 - INFO - network_sentinel_prediction - Generating batch prediction.
+2026-04-12 19:52:25,566 - INFO - network_sentinel_prediction - Batch prediction complete. Label=BENIGN Confidence=1.0000
+2026-04-12 19:52:25,568 - INFO - network_sentinel_incident_agent - Running incident intelligence agent for predicted attack: BENIGN
+2026-04-12 19:52:25,568 - INFO - network_sentinel_incident_agent - Retrieving context from Chroma.
+2026-04-12 19:52:25,568 - INFO - network_sentinel_retriever - Running retrieval query: Explain normal network traffic behavior, why it is considered benign, common indicators of benign traffic, and whether any action is required.
+2026-04-12 19:52:25,568 - INFO - network_sentinel_knowledge_base - Initializing Chroma client at path: rag\chroma_db
+2026-04-12 19:52:25,575 - INFO - network_sentinel_knowledge_base - Loaded or created Chroma collection: network_security
+2026-04-12 19:52:26,041 - INFO - network_sentinel_retriever - Retrieval completed successfully. Retrieved 2 documents.
+2026-04-12 19:52:26,041 - INFO - network_sentinel_incident_agent - Generating final LLM response.
+2026-04-12 19:52:26,346 - INFO - network_sentinel_llm_agent - OpenAI client initialized.
+2026-04-12 19:52:45,430 - WARNING - network_sentinel_llm_agent - OpenAI failed, using fallback. Error: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2026-04-12 19:52:45,431 - INFO - network_sentinel_incident_agent - Incident report generated successfully.

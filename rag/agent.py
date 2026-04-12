@@ -1,13 +1,12 @@
 from retriever import retrieve_info
+from src.models.predict import predict_attack
 
-# Simulated model output
-predicted_label = "DoS Hulk"
+def run_agent(input_df, user_query=None):
+    predicted_label = predict_attack(input_df)
 
-# Build a query using the predicted attack label
-query = f"How to troubleshoot {predicted_label} attack?"
+    if user_query is None:
+        user_query = f"How to troubleshoot {predicted_label} attack?"
 
-# Retrieve explanation and troubleshooting guidance
-response = retrieve_info(query)
+    response = retrieve_info(user_query)
 
-print("Predicted Label:", predicted_label)
-print("Agent Response:", response)
+    return predicted_label, response

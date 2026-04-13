@@ -2,7 +2,8 @@ streamlit
 pandas
 numpy
 scikit-learn
-joblib
-chromadb
-openai
 xgboost
+joblib
+openai
+chromadb
+protobuf==3.20.3
